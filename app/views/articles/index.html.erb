@@ -1,0 +1,130 @@
+<style>
+  /* Prevent body overflow and keep the page fixed */
+  html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden; /* Prevents scrolling */
+    display: flex;
+    flex-direction: column;
+  }
+
+  body {
+    background-image: url("https://img.freepik.com/premium-photo/photo-art-blur-color-wallpaper-gradient-background_1026065-850.jpg?semt=ais_hybrid");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  /* Apply an overlay to dim the background image */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay to dim background */
+    z-index: -1;
+  }
+
+  /* Title Styling */
+  h1 {
+    font-size: 50px;
+    text-align: center;
+    color: white;
+    text-shadow: 5px 5px 10px white;
+    margin-top: 20px;
+  }
+  
+  /* Table Styling */
+  table {
+    width: 50%;
+    margin: 20px auto;
+<%#     background-color: white; %>
+    color: brown;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  th, td {
+    border: 3px solid lightblue;
+    padding: 10px;
+    font-family: sans-serif;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  th {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    font-size: 25px;
+  }
+
+  tr:hover {
+    background-color: palegoldenrod;
+  }
+
+  a:hover {
+    color: black;
+  }
+
+  /* Custom Button Style */
+  .btn-primary {
+    margin-left: 700px;
+    background-color: ghostwhite;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+
+  .btn-primary:active {
+    background-color: #004085;
+    transform: scale(0.98);
+  }
+
+</style>
+
+<h1>Articles</h1>
+
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Actions</th> 
+      </tr>
+    </thead>
+    <tbody>
+      <% @articles.each do |article| %>
+        <tr>
+          <td><%= link_to article.title, article %></td>
+          <td>
+            <%= link_to 'Show', article_path(article) %>
+            &nbsp; &nbsp;
+            <%= link_to 'Edit', edit_article_path(article) %>
+            &nbsp; &nbsp;
+            <%= link_to 'Delete', article_path(article), 
+                        data: { turbo_method: :delete, 
+                                turbo_confirm: "Are you sure?" } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= button_to "New Article", new_article_path, method: :get, class: "btn btn-primary" %>
+</body>

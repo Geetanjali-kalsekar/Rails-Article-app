@@ -1,0 +1,47 @@
+<style>
+   *{
+    background-image: url("https://img.freepik.com/premium-photo/blank-green-paper-texture-background_7190-886.jpg");
+    background-repeat: no-repeat;
+    background-size:cover ;
+   }
+
+  .form{
+    height:200px;
+    width:200px;
+    border:solid black;
+    margin-left:40% ;
+    padding:40px;
+    line-height: 2;
+  }
+   
+   label{
+     font-size: 20px;
+     color:royalblue;
+
+   }
+  </style>
+
+
+<div class="form">
+<%= form_with model: article do |form| %>
+  <div class="first">
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+    <% article.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="second">
+    <%= form.label :body %><br>
+    <%= form.textarea :body %><br>
+    <% article.errors.full_messages_for(:body).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+</div>

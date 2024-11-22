@@ -1,0 +1,76 @@
+ body{
+<%#     background-color:  black; %>
+    background-image: url("https://img.freepik.com/premium-photo/photo-art-blur-color-wallpaper-gradient-background_1026065-850.jpg?semt=ais_hybrid");
+  background-repeat: no-repeat;
+  <%# background-attachment: fixed;
+  background-position: center;  %>
+  background-size:cover;
+  }
+  
+  h1{
+    font-size:50px;
+    text-align: center;
+    color:white;
+    text-shadow: 5px 5px 10px white;
+  }
+  
+  table{
+    width:50%;
+<%#     border-collapse: collapse; %>
+    margin:20px auto;
+    background-color: white 
+    color:brown; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius:5px;
+    overflow:hidden;
+  }
+
+  th,td{
+    border:3px solid lightblue;
+    padding:10px;
+    font-family: sans-serif;
+    font-size: 16px;
+    text-align: center;
+  }
+
+   th {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    font-size:25px;
+  }
+
+
+  tr:hover {
+    background-color:palegoldenrod;
+
+  }
+
+  a{
+    color:whitesmoke;
+  }
+
+  /* Custom Button Style */
+.btn-primary {
+  margin-left: 700px;
+  background-color: ghostwhite;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.btn-primary:active {
+  background-color: #004085;
+  transform: scale(0.98);
+}

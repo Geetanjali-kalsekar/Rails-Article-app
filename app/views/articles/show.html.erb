@@ -1,0 +1,168 @@
+<style>
+/* General Styling for the Main Container */
+html, body {
+  height: 100%; /* Ensure full height for the page */
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #f9f9f9;
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds */
+}
+
+/* Main Article Styling */
+.main {
+  margin: 20px auto;
+  max-width: 800px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.article-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Article Content Styling */
+.article-content {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin: 20px auto;
+  max-width: 800px;
+  text-align: justify;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  padding: 10px;
+}
+
+/* Actions Section Styling - Buttons in the Same Row */
+.article-actions ul {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0;
+  margin: 0;
+  display: flex; /* Align buttons in a row */
+  justify-content: center; /* Center buttons horizontally */
+  gap: 15px; /* Space between buttons */
+}
+
+.article-actions li {
+  margin: 0;
+}
+
+.edit-link, .destroy-link, .add-comment-button {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.edit-link {
+  background-color: #007bff;
+}
+
+.destroy-link {
+  background-color: #dc3545;
+}
+
+.add-comment-button {
+  background-color: #28a745;
+}
+
+.edit-link:hover {
+  background-color: #0056b3;
+}
+
+.destroy-link:hover {
+  background-color: #c82333;
+}
+
+.add-comment-button:hover {
+  background-color: #218838;
+}
+
+/* Comments Section Styling */
+.comments-section {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 800px;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.comments-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+.comment {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+  text-align: left;
+}
+
+.comment:last-child {
+  border-bottom: none;
+}
+
+.comment strong {
+  color: #333;
+}
+
+.comment p {
+  margin: 5px 0;
+}
+
+</style>
+
+<div class="main">
+  <h1 class="article-title"><%= @article.title %></h1>
+</div>
+
+<div id="content" class="article-content">
+  <p><%= @article.body %></p>
+</div>
+
+<div id="edit" class="article-actions">
+  <ul>
+    <li><%= link_to "Edit", edit_article_path(@article), class: "edit-link" %></li>
+    <li><%= link_to "Destroy", article_path(@article), data: {
+                      turbo_method: :delete,
+                      turbo_confirm: "Are you sure?"
+                    }, class: "destroy-link" %></li>
+    <li><%= link_to "Add Comment", new_article_comment_path(@article), class: "add-comment-button" %></li>
+  </ul>
+</div>
+
+<div id="comment" class="comments-section">
+  <h2>Comments</h2>
+  <% @article.comments.each do |comment| %>
+    <div class="comment">
+      <p>
+        <strong>Commenter:</strong>
+        <%= comment.commenter %>
+      </p>
+      <p>
+        <strong>Comment:</strong>
+        <%= comment.body %>
+      </p>
+    </div>
+  <% end %>
+</div>
