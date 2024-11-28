@@ -3,6 +3,7 @@
   <h2>Comments</h2>
   <% article.comments.each do |comment| %>
     <div class="comment">
+      <% unless comment.archived? %>
       <p>
         <strong>Commenter:</strong>
         <%= comment.commenter %>
@@ -12,6 +13,14 @@
         <strong>Comment:</strong>
         <%= comment.body %>
       </p>
+
+      <p>
+    <%= link_to "Destroy", [comment.article, comment], data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"
+                } %>
+       </p>
+
     </div>
   <% end %>
 </div>

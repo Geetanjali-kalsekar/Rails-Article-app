@@ -9,8 +9,9 @@ Rails.application.routes.draw do
 
   # Generates all standard RESTful routes for articles
   resources :articles do 
-    resources :comments, only: [:new, :create]
+    resources :comments, only: [:new, :create, :destroy]
   end
 end
+
 
 

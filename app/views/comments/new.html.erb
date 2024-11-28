@@ -10,6 +10,12 @@
       <%= form.label :body, class: "form-label" %><br>
       <%= form.text_area :body, class: "form-textarea", placeholder: "Your Comment" %>
     </div>
+
+    <p>
+  <%= form.label :status %><br>
+  <%= form.select :status, Visible::VALID_STATUSES, selected: 'public' %>
+  </p>
+  
     <div class="form-group">
       <%= form.submit "Submit Comment", class: "form-submit" %>
     </div>
